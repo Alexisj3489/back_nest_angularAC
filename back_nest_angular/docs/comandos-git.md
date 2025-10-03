@@ -10,3 +10,19 @@ Referente ddel repositorio local con el repositorio remmoto
 git remote add origin
 https://github.com/Alexisj3489/back_nest_angularAC.git
 ````
+
+# Validar referencia
+````
+git remote -v
+````
+-------------------
+````
+git add .
+git commit -m "proyecto base"
+git put origin master
+```
+```
+-Para forzar 
+
+git push -f origin master 
+```
