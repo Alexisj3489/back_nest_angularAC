@@ -1,11 +1,11 @@
-import { DataSource } from "typeorm";
 import { Categoria } from "./entities/categoria.entity";
+import { DataSource } from "typeorm";
 import { Inject } from "@nestjs/common";
 
-export const categoriaProviders = [
-  {
+export const categoriaProvider=[
+    {
     provide: 'CATEGORIA_REPOSITORY',
-    useFactory: (dataSource: DataSource) => dataSource.getRepository(Categoria),
-    inject: ['DATABASE_CONNECTION_POSTGRES']
-  }
-];
+    useFactory: (dataSource:DataSource)=>dataSource.getRepository(Categoria),
+    inject:['DATA_CONNECTION']
+    }
+]   

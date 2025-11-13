@@ -3,16 +3,15 @@ import { Column, Entity, JoinColumn, OneToOne, PrimaryGeneratedColumn } from "ty
 
 @Entity()
 export class Persona {
-  @PrimaryGeneratedColumn()
-  id: number;
+    @PrimaryGeneratedColumn()
+    id: number;
+    @Column()
+    nombres: string;
+    @Column()
+    apellidos: string;  
+    @OneToOne(()=>User, user=>user.persona)
+    @JoinColumn()
+    user: User;
 
-  @Column()
-  nombres: string;
 
-  @Column()
-  apellidos: string;
-
-  @OneToOne(() => User, user => user.persona)
-  @JoinColumn()
-  user: User;
 }

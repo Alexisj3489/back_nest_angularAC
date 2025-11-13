@@ -3,7 +3,7 @@ Content-Type: application/json
 
 {
     "name": "Alexis Coronel",
-    "email": "alex@yavi.com",
+    "email": "ajg.coronely@yavi.com",
     "password": "123456"
 }
 
@@ -13,7 +13,7 @@ Content-Type: application/json
 
 {
     "name": "Alexis Coronel",
-    "email": "alex@yavi.com",
+    "email": "ajg.coronely@yavi.com",
     "password": "123456"
 }
 
