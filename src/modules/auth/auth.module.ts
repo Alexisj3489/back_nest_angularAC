@@ -3,13 +3,16 @@ import { AuthController } from './auth.controller';
 import { AuthService } from './auth.service';
 import { JwtModule } from '@nestjs/jwt';
 import { JwtSrategy } from './jwt.strategy';
+import { TypeOrmModule } from '@nestjs/typeorm';
+import { User } from '../users/entities/user.entity';
 
 @Module({
   imports:[
     JwtModule.register({
-        secret:'Codgo Secreto',
+        secret:'MI_CODIGO_SECRETO',
         signOptions:{expiresIn:'1h'}
-    })
+    }),
+    TypeOrmModule.forFeature([User])
   ],
   controllers: [AuthController],
   providers: [AuthService, JwtSrategy]

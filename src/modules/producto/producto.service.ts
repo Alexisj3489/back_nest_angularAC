@@ -3,12 +3,15 @@ import { CreateProductoDto } from './dto/create-producto.dto';
 import { UpdateProductoDto } from './dto/update-producto.dto';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Producto } from './entities/producto.entity';
-import { privateDecrypt } from 'crypto';
 import { Repository } from 'typeorm';
 
 @Injectable()
 export class ProductoService {
-  constructor(@InjectRepository(Producto) private productoRepository: Repository<Producto>){}
+  constructor(@InjectRepository(Producto) private productoRepository: Repository<Producto>) {}
+
+  queryBuilder(alias: string) { 
+    return this.productoRepository.createQueryBuilder(alias);
+  }
 
   create(createProductoDto: CreateProductoDto) {
     return this.productoRepository.save(createProductoDto);
@@ -27,7 +30,7 @@ export class ProductoService {
   }
 
   update(id: number, updateProductoDto: UpdateProductoDto) {
-    return this.productoRepository.update(id,updateProductoDto);
+    return this.productoRepository.update(id, updateProductoDto);
   }
 
   remove(id: number) {

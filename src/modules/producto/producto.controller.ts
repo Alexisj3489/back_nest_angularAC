@@ -1,8 +1,11 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import { Controller, Get, Post, Body, Patch, Param, Delete, Request} from '@nestjs/common';
 import { ProductoService } from './producto.service';
 import { CreateProductoDto } from './dto/create-producto.dto';
 import { UpdateProductoDto } from './dto/update-producto.dto';
+import { ApiTags } from '@nestjs/swagger';
 
+
+@ApiTags('producto')
 @Controller('producto')
 export class ProductoController {
   constructor(private readonly productoService: ProductoService) {}
@@ -16,6 +19,34 @@ export class ProductoController {
   findAll() {
     return this.productoService.findAll();
   }
+
+  @Get('back')
+    async backend(@Request() req: any){
+    const builder = await this.productoService.queryBuilder('productos');
+    if (req.query.q){ //si existe el valor de búsqueda
+        builder.where("productos.nombre LIKE :q", {q: `%${req.query.q}%`})
+    }
+
+    const sort = req.query.sort;
+    if (sort){
+      builder.orderBy('productos.precio',sort.toUpperCase());
+    }
+    const page:number=parseInt(req.query.page as any) || 1 //si no existe nada captura la pagina 1
+
+    const limit=2; //limite de productos por pagina
+
+    builder.offset((page-1)*limit).limit(limit) 
+
+    const total=await builder.getCount(); //total de productos
+    return {
+      data: await builder.getMany(),
+      total:total,
+      page,
+      last_page: Math.ceil(total/limit)
+    }
+    //return await builder.getMany();
+}
+
 
   @Get(':id')
   findOne(@Param('id') id: string) {

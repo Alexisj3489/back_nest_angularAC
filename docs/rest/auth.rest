@@ -3,22 +3,23 @@ Content-Type: application/json
 
 {
     "name": "Alexis Coronel",
-    "email": "ajg.coronely@yavi.com",
+    "email": "alexis@yavi.com",
     "password": "123456"
 }
 
-### login sin conexion a DB 
+### login sin conexion a DB
 POST http://127.0.0.1:3000/auth/login
 Content-Type: application/json
 
 {
     "name": "Alexis Coronel",
-    "email": "ajg.coronely@yavi.com",
+    "email": "alexis@yavi.com",
     "password": "123456"
 }
 
 ### users
 GET http://127.0.0.1:3000/users
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRvbnlAeWF2aS5jb20iLCJpZCI6MSwiaWF0IjoxNzY0MTI4ODMyLCJleHAiOjE3NjQxMzI0MzJ9.0-lS3a1_m-3r-b2Dxv_PWpPe3CYL7XSGvTvYWxvpbJ
 
 
 
